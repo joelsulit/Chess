@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">practice coding</p>
+      <h1>Chess using PYTHON</h1>
+      <p class="hero-copy">Play by clicking pieces or typing notation. Legal targets glow and game state updates live.</p>
+    </section>
+
+    <section class="layout">
+      <section class="board-column reveal-1">
+        <div class="board-tools">
+          <div class="status-group">
+            <span class="status-label">Game State</span>
+            <span id="statusBadge" class="status-badge">Active</span>
+          </div>
+          <button id="flipBtn" class="btn btn-ghost" type="button">Flip Board</button>
+        </div>
+
+        <div class="board-shell">
+          <div id="board" class="board" aria-label="Chess board"></div>
+        </div>
+        <p class="legend">Tip: select a piece, then click any glowing square to move.</p>
+      </section>
+
+      <aside class="panel reveal-2">
+        <div class="row">
+          <button id="newGameBtn" class="btn" type="button">New Game</button>
+          <button id="resetBtn" class="btn btn-secondary" type="button">Reset</button>
+          <button id="undoBtn" class="btn btn-ghost" type="button">Undo</button>
+        </div>
+
+        <div class="engine-controls">
+          <button id="engineMoveBtn" class="btn btn-ghost" type="button">Engine Move</button>
+          <select id="engineLevelSelect" aria-label="Engine level">
+            <option value="easy">Easy</option>
+            <option value="hard" selected>Hard</option>
+            <option value="very_hard">Very Hard</option>
+          </select>
+          <label class="engine-toggle">
+            <input id="vsEngineToggle" type="checkbox">
+            Play vs Engine (Black)
+          </label>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <span class="label">Turn</span>
+            <span id="turnValue" class="value">-</span>
+          </div>
+          <div class="meta-card">
+            <span class="label">State</span>
+            <span id="stateValue" class="value">-</span>
+          </div>
+          <div class="meta-card">
+            <span class="label">Move #</span>
+            <span id="fullmoveValue" class="value">-</span>
+          </div>
+          <div class="meta-card">
+            <span class="label">Halfmove</span>
+            <span id="halfmoveValue" class="value">-</span>
+          </div>
+        </div>
+
+        <form id="moveForm" class="move-form">
+          <label for="moveInput">Move Input</label>
+          <input id="moveInput" name="move" type="text" autocomplete="off" placeholder="e2e4, e2 e4, O-O">
+
+          <label for="promotionInput">Promotion</label>
+          <select id="promotionInput" name="promotion">
+            <option value="">Auto</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="B">B</option>
+            <option value="N">N</option>
+          </select>
+
+          <button type="submit" class="btn">Play Move</button>
+        </form>
+
+        <div id="selection" class="selection">Selected: none</div>
+        <div id="message" class="message">Creating game...</div>
+
+        <section class="history">
+          <h2>Move History</h2>
+          <ol id="moveHistory" class="move-history"></ol>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
