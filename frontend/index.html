@@ -11,7 +11,7 @@
     <section class="hero">
       <p class="eyebrow">practice coding (JOEL IV P. SULIT)</p>
       <h1>Chess using PYTHON</h1>
-      <p class="hero-copy">Play by clicking pieces or typing notation. Legal targets glow and game state updates live.</p>
+      <p class="hero-copy">Play by clicking pieces. Legal targets glow and game state updates live.</p>
     </section>
 
     <section class="layout">
@@ -69,10 +69,7 @@
           </div>
         </div>
 
-        <form id="moveForm" class="move-form">
-          <label for="moveInput">Move Input</label>
-          <input id="moveInput" name="move" type="text" autocomplete="off" placeholder="e2e4, e2 e4, O-O">
-
+        <div class="move-form">
           <label for="promotionInput">Promotion</label>
           <select id="promotionInput" name="promotion">
             <option value="">Auto</option>
@@ -81,9 +78,7 @@
             <option value="B">B</option>
             <option value="N">N</option>
           </select>
-
-          <button type="submit" class="btn">Play Move</button>
-        </form>
+        </div>
 
         <div id="selection" class="selection">Selected: none</div>
         <div id="message" class="message">Creating game...</div>

@@ -7,8 +7,6 @@ const statusBadgeEl = document.getElementById("statusBadge");
 const messageEl = document.getElementById("message");
 const selectionEl = document.getElementById("selection");
 const moveHistoryEl = document.getElementById("moveHistory");
-const moveFormEl = document.getElementById("moveForm");
-const moveInputEl = document.getElementById("moveInput");
 const promotionInputEl = document.getElementById("promotionInput");
 const newGameBtn = document.getElementById("newGameBtn");
 const resetBtn = document.getElementById("resetBtn");
@@ -300,9 +298,7 @@ async function setSelection(squareNameValue) {
 
 function updateControls() {
   const endedOrMissing = !gameState || gameState.ended;
-  moveInputEl.disabled = endedOrMissing || engineBusy;
   promotionInputEl.disabled = endedOrMissing || engineBusy;
-  moveFormEl.querySelector("button[type='submit']").disabled = endedOrMissing || engineBusy;
   engineMoveBtn.disabled = endedOrMissing || engineBusy;
   engineLevelSelect.disabled = engineBusy;
   undoBtn.disabled = engineBusy || !gameState || moveHistory.length === 0;
@@ -548,29 +544,6 @@ async function handleSquareClick(square, piece) {
     await maybeAutoEngineMove();
   }
 }
-
-moveFormEl.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!gameState || gameState.ended) {
-    return;
-  }
-
-  const move = moveInputEl.value.trim();
-  if (!move) {
-    setMessage("Enter a move first.", true);
-    return;
-  }
-
-  const promotion = promotionInputEl.value || undefined;
-  const compact = move.replace(/\s+/g, "").toLowerCase();
-
-  const success = await playMove({ move, promotion }, compact);
-  if (success) {
-    await maybeAutoEngineMove();
-    moveInputEl.focus();
-    moveInputEl.select();
-  }
-});
 
 newGameBtn.addEventListener("click", async () => {
   await createGame();
